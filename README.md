@@ -1,15 +1,15 @@
 # TestUI
 AirTest-Win  
 Login on window aplliction Test UI Automation  
-#Windows kit(SDK) tools
+# Windows kit(SDK) tools
 windows kit\bin\
 Inspect.exe 定位无素windows
-#android &ios
+# android &ios
 android studio UI automator view  tools->DDMS->android device monitor 定位元素开发环境
 ios Accessibility Inspector Xcode->Open Developer Tool->Accessibility Inspector
-#Airtest 跨平台的UI自动化测试框架
+# Airtest 跨平台的UI自动化测试框架
 
-#Appium 是跨平台测试框架
+# Appium 是跨平台测试框架
 Appium是一个开源、跨平台的测试框架，可以用来测试原生及混合的移动端应用。Appium支持IOS、Android及FirefoxOS平台。Appium使用WebDriver的json wire协议，来驱动Apple系统的UIAutomation库、Android系统的UIAutomator框架。Appium对IOS系统的支持得益于Dan Cuellar’s对于IOS自动化的研究。Appium也集成了Selendroid，来支持老android版本。
 
 Appium支持Selenium WebDriver支持的所有语言，如java、Object-C、JavaScript、Php、Python、Ruby、C#、Clojure，或者Perl语言，更可以使用Selenium WebDriver的Api。Appium支持任何一种测试框架。如果只使用Apple的UIAutomation，我们只能用javascript来编写测试用例，而且只能用Instruction来运行测试用例。同样，如果只使用Google的UIAutomation，我们就只能用java来编写测试用例。Appium实现了真正的跨平台自动化测试。
@@ -18,7 +18,7 @@ iOS 9.3 and lower: Apple's UIAutomation
 Android 4.3+: Google's UiAutomator/UiAutomator2
 Windows: Microsoft's WinAppDriver
 
-#ADB
+# ADB
 查看当前连接设备：
 adb devices
 如果发现多个设备：
@@ -152,7 +152,7 @@ adb shell am broadcast -a android.intent.action.BOOT_COMPILETED
 启动一个服务也是类似，例如:
 adb shell am startservice "com.example.crime/com.example.crime.MyService"
 
-##dumpsys:获取系统数据。
+## dumpsys:获取系统数据。
 dumpsys命令可以提供非常多的系统信息。
 可以通过adb shell service list来查看dumpsys能提供查询信息的服务，常用的有：
 服务	类名	功能
@@ -194,7 +194,7 @@ meminfo	MemBinder	内存
 查看CPU使用情况：
 使用**adb shell top **命令来查看系统CPU使用情况。（ctrl+c结束）
 
-##System
+## System
 adb root
 获取 root 权限。
 
@@ -215,7 +215,7 @@ adb shell setprop
 68人点赞
 Android
 
-##Network
+## Network
 adb shell netstat
 主要用于网络统计。
 
@@ -231,7 +231,7 @@ adb shell ip
 主要用于显示一些数据
 adb shell ip [OPTIONS] OBJECT
 
-##File Manager
+## File Manager
 adb pull
 从 Android 设备下载文件到 PC。
 adb pull <remote> [local]
@@ -274,7 +274,7 @@ adb shell mv
 移动或者更名文件
 adb shell mv [options] <source> <dest>
 
-##Wireless  
+## Wireless  
 adb connect
 无限调试必备命令，需要保证设备和 PC 在同一局域网内，所以可通过远程桌面达到远程调试的结果。
 adb connect <host>[:<port>]
@@ -292,7 +292,7 @@ adb pull /system/build.prop ./
 adb usb
 设置设备以 USB 形式连接 PC。
 
-##ADB Debugging
+## ADB Debugging
 adb forward
 端口映射，将 PC 端的某端口数据重定向到手机端的一个端口。
 
