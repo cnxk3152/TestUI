@@ -4,9 +4,11 @@
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 # !/usr/bin/python3
 
-# import os
+import os
+import requests
 from time import sleep
-
+#对excel操作 xlrd是读excel，xlwt是写excel
+import xlrd,xlwt
 #pywin32
 import win32gui
 import win32con
@@ -15,8 +17,12 @@ import pyautogui
 # pywinauto
 from pyautogui.screenshotUtil import locateCenterOnScreen
 from pywinauto.application import Application
-
+#airtest poco
+from airtest.core.api import *
+from poco.drivers.unity3d import unity3d_poco
 app = Application(backend="win32")
+
+poco=unity3d_poco
 
 
 # https
@@ -200,3 +206,80 @@ if __name__ == '__main__':
 #f1、f2、f3、...、f12：同键盘
 #enter、return、\n：Enter键
 #tab、\t：Tab键
+
+
+#=========================xlrd xlwt excel  excel中最重要的方法就是book和sheet的操作===============
+
+#data = xlrd.open_workbook(filename)#文件名以及路径，如果路径或者文件名有中文给前面加一个r拜师原生字符。
+
+#-----------获取book中一个工作表--------------
+#table = data.sheets()[0]          #通过索引顺序获取
+
+#table = data.sheet_by_index(sheet_indx)) #通过索引顺序获取
+
+#table = data.sheet_by_name(sheet_name)#通过名称获取
+
+#以上三个函数都会返回一个xlrd.sheet.Sheet()对象
+
+#names = data.sheet_names()    #返回book中所有工作表的名字
+
+#data.sheet_loaded(sheet_name or indx)   # 检查某个sheet是否导入完毕
+
+#-----------------行的操作(rows)-----------------
+#nrows = table.nrows  #获取该sheet中的有效行数
+
+#table.row(rowx)  #返回由该行中所有的单元格对象组成的列表
+
+#table.row_slice(rowx)  #返回由该列中所有的单元格对象组成的列表
+
+#table.row_types(rowx, start_colx=0, end_colx=None)    #返回由该行中所有单元格的数据类型组成的列表
+
+#table.row_values(rowx, start_colx=0, end_colx=None)   #返回由该行中所有单元格的数据组成的列表
+
+#table.row_len(rowx) #返回该列的有效单元格长度
+
+#---------------列(colnum)的操作----------------------------
+#ncols = table.ncols   #获取列表的有效列数
+
+#table.col(colx, start_rowx=0, end_rowx=None)  #返回由该列中所有的单元格对象组成的列表
+
+#table.col_slice(colx, start_rowx=0, end_rowx=None)  #返回由该列中所有的单元格对象组成的列表
+
+#table.col_types(colx, start_rowx=0, end_rowx=None)    #返回由该列中所有单元格的数据类型组成的列表
+
+#table.col_values(colx, start_rowx=0, end_rowx=None)   #返回由该列中所有单元格的数据组成的列表
+
+#------------------单元格的操作--------------------
+#table.cell(rowx,colx)   #返回单元格对象
+
+#table.cell_type(rowx,colx)    #返回单元格中的数据类型
+
+#table.cell_value(rowx,colx)   #返回单元格中的数据
+
+#table.cell_xf_index(rowx, colx)   # 暂时还没有搞懂
+
+#---------------------------------------------------------
+#♦ python解决open()函数、xlrd.open_workbook()函数文件名包含中文，sheet名包含中文报错的问题
+#问题现象：
+#　　♦1、使用open()函数、xlrd.open_workbook()函数打开文件，文件名若包含中文，会报错找不到这个文件或目录。
+
+#　　♦2、获取sheet时若包含中文，也会报错。
+
+#复制代码
+#打开文件
+#file = open(filename,'rb')
+
+#打开excel文件
+#workbook = xlrd.open_workbook(filename)
+
+#获取sheet
+#sheet = workbook.sheet_by_name(sheetname)
+#复制代码
+#解决方案：
+
+#　　♦对参数进行转码即可。如：
+
+#filename = filename.decode('utf-8')
+#　　♦也试过unicode函数，不过，在ride中运行时出现了报错，所以不赞成使用。
+
+#filename = unicode(filename,'utf-8')
